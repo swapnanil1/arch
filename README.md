@@ -26,10 +26,10 @@ Organize your personal applications and set up a simplified bash environment wit
 
 ```bash
 # Browser
-yay -S --needed firefox chromium google-chrome brave-bin librewolf-bin torbrowser-launcher
+yay -S --needed firefox brave-bin torbrowser-launcher
 
 # Other Apps
-yay -S --needed thunderbird discord telegram-desktop keepassxc mpv qbittorrent bleachbit appimagelauncher onlyoffice-bin visual-studio-code-bin heroic-games-launcher-bin
+yay -S --needed thunderbird discord telegram-desktop keepassxc mpv qbittorrent bleachbit appimagelauncher onlyoffice-bin vscodium-bin
 
 # Remap Keys on keyboard
 yay -S --needed input-remapper-git
@@ -39,6 +39,7 @@ sudo systemctl enable input-remapper
 # Appimages I use
 lmstudio - [lmstudio.ai](https://lmstudio.ai/)
 protonup-qt - [ProtonUp-Qt](https://github.com/DavidoTek/ProtonUp-Qt/releases/)
+yay -S protonup-qt 
 
 # Config .bashrc
 alias ls='eza -al --color=always --group-directories-first'
@@ -126,7 +127,7 @@ Install the necessary graphics driver components for AMD GPUs:
 
 ```
 sudo pacman -S --needed mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau \
-vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon libva-vdpau-driver lib32-libva-vdpau-driver
+vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon libva-vdpau-driver lib32-libva-vdpau-driver \
 opencl-clover-mesa lib32-opencl-clover-mesa opencl-rusticl-mesa lib32-opencl-rusticl-mesa rocm-opencl-runtime
 ```
 
@@ -362,6 +363,10 @@ lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32
 sudo pacman -S --needed lutris python-gobject python-requests python-pillow python-yaml python-setproctitle python-distro python-evdev psmisc p7zip curl cabextract soundfont-fluid libgirepository gobject-introspection
 ```
 
+#### Epic Games 
+````
+sudo pacman -S --needed heroic-games-launcher-bin
+````
 #### Install FPS Overlay
 
 ```
