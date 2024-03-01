@@ -313,7 +313,8 @@ Optimize your multimedia and utility experience by installing various desktop en
 ### KDE Apps and Themes
 To install KDE Plasma 6 
 ```
-sudo pacman -S --needed plasma-meta konsole kwrite dolphin ark egl-wayland
+sudo pacman -S --needed plasma-meta konsole kwrite dolphin ark egl-wayland sddm
+sudo systemctl enable sddm.service 
 ```
 Post Setup apps 
 ```
