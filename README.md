@@ -316,7 +316,7 @@ To install KDE Plasma 6
 sudo pacman -S --needed plasma-meta konsole kwrite dolphin ark egl-wayland sddm
 sudo systemctl enable sddm.service 
 ```
-Post Setup apps 
+Post install apps and themes
 ```
 sudo pacman -S --needed packagekit-qt6 okular kate gwenview spectacle kalk kwalletmanager kdeconnect sshfs plasma-systemmonitor kfind kolourpaint kdevelop kamoso krita kdenlive mediainfo
 
