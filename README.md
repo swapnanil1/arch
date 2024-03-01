@@ -1,6 +1,6 @@
 # Arch Linux Configuration Guide
 
-Welcome to the Arch Linux Configuration Guide! This comprehensive guide is divided into multiple sections to help you set up and optimize your Arch Linux environment. Feel free to navigate between sections using the provided links.
+Welcome to the Arch Linux Configuration Guide! This comprehensive guide is divided into multiple sections to help you set up and optimize your Arch Linux environment.
 
 ## Personal Apps & Bashrc Configuration
 
@@ -118,12 +118,15 @@ Configure networking on your Arch Linux system with the following commands:
 
 ```
 # Install NetworkManager and related tools
-sudo pacman -S --needed networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
+sudo pacman -S --needed bind networkmanager networkmanager-openvpn networkmanager-pptp networkmanager-vpnc
 
 # Enable NetworkManager service
 sudo systemctl enable NetworkManager
 ```
-
+```
+Check Secure DNS status
+dig +short txt qnamemintest.internet.nl
+```
 ### Archive and File System Utilities
 
 Install essential archive and file system utilities with the following commands:
