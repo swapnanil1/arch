@@ -313,7 +313,8 @@ Optimize your multimedia and utility experience by installing various desktop en
 ### KDE Apps and Themes
 
 ```
-sudo pacman -S --needed packagekit-qt5 ark okular kate gwenview spectacle kalk kvantum kdeconnect sshfs kcolorchooser filelight plasma-systemmonitor partitionmanager ktorrent
+sudo pacman -S --needed packagekit-qt6 ark okular kate gwenview spectacle kalk kwalletmanager kdeconnect sshfs plasma-systemmonitor kfind kolourpaint kdevelop kamoso krita kdenlive mediainfo
+
 sudo pacman -S --needed materia-kde materia-gtk-theme capitaine-cursors fcitx5-breeze kvantum-theme-materia
 ```
 
