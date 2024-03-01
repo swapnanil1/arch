@@ -250,6 +250,23 @@ add the code below
   }
 }
 ```
+
+### Setup Terminal, Prompt, Neovim, and LazyVim
+```
+sudo pacman -S --needed bash-completion alacritty eza neovim fd ripgrep xclip python-pynvim nodejs npm
+# Make a backup of your current Neovim files:
+
+mv ~/.config/nvim{,.bak}
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+# Clone the starter, remove .git, and run Neovim:
+
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+nvim
+
+```
 ### Organize your personal applications and set up a simplified bash environment with these commands:
 
 ```bash
@@ -269,24 +286,9 @@ alias ls='eza -al --color=always --group-directories-first'
 alias pi='sudo pacman -S'
 alias pr='sudo pacman -R'
 alias prr='sudo pacman -Rns'
+alias vim='nvim'
 ```
 
-### Setup Terminal, Prompt, Neovim, and LazyVim
-```
-sudo pacman -S --needed bash-completion alacritty eza neovim fd ripgrep xclip python-pynvim nodejs npm
-# Make a backup of your current Neovim files:
-
-mv ~/.config/nvim{,.bak}
-mv ~/.local/share/nvim{,.bak}
-mv ~/.local/state/nvim{,.bak}
-mv ~/.cache/nvim{,.bak}
-# Clone the starter, remove .git, and run Neovim:
-
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-nvim
-
-```
 ### Format And Granting Read/Write Permissions to Linux Hard Drives
 
 To grant read and write permissions to a Linux hard drive, use the chmod command in the terminal.
