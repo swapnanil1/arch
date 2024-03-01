@@ -311,9 +311,13 @@ Enhance read/write speeds by editing /etc/fstab:
 Optimize your multimedia and utility experience by installing various desktop environments, applications, and configuring essential tools:
 
 ### KDE Apps and Themes
-
+To install KDE Plasma 6 
 ```
-sudo pacman -S --needed packagekit-qt6 ark okular kate gwenview spectacle kalk kwalletmanager kdeconnect sshfs plasma-systemmonitor kfind kolourpaint kdevelop kamoso krita kdenlive mediainfo
+sudo pacman -S --needed plasma-meta konsole kwrite dolphin ark egl-wayland
+```
+Post Setup apps 
+```
+sudo pacman -S --needed packagekit-qt6 okular kate gwenview spectacle kalk kwalletmanager kdeconnect sshfs plasma-systemmonitor kfind kolourpaint kdevelop kamoso krita kdenlive mediainfo
 
 sudo pacman -S --needed materia-kde materia-gtk-theme capitaine-cursors fcitx5-breeze kvantum-theme-materia
 ```
