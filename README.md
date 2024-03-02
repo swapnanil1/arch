@@ -295,7 +295,8 @@ To grant read and write permissions to a Linux hard drive, use the chmod command
 ```
 sudo pacman -S e2fsprogs
 lsblk
-mkfs.ext4 /dev/partition
+sudo mkfs -t ext4 /dev/sda1
+sudo e2label /dev/sda1 SetaDriveLabel
 ```
 ```
 sudo chown -v your_username:your_username /media/your_external_drive
