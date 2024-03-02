@@ -308,7 +308,7 @@ Enhance read/write speeds by editing /etc/fstab:
 
 ```
 /dev/nvme0n1    /mnt/abcdefgh    btrfs   rw,noatime,ssd,discard=async,compress=zstd:3,space_cache=v2 0 0
-/dev/sda5       /mnt/xxxyyyzz    ext4    defaults,noatime,discard=async       0    1
+UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,exec,auto		0	0
 ```
 
 ## Multimedia & Utilities - KDE, Gnome, Cinnamon, Terminal Setup, and More
