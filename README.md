@@ -231,26 +231,10 @@ Tips :) 1.Add 'SkipReview' to /etc/paru.conf to skip review of pkgbuild of every
 
 ```
 ### Code and IDE
-#### VSCodium with Microsoft's proprietary marketplace
+#### Code-OSS with Microsoft's proprietary marketplace
 ```
-paru -S vscodium-bin 
-mkdir -p ~/.config/VSCodium
-touch ~/.config/VSCodium/product.json
-vim ~/.config/VSCodium/product.json
-add the code below
+paru -S code code-features code-marketplace
 ```
-```
-{
-  "nameShort": "Visual Studio Code",
-  "nameLong": "Visual Studio Code",
-  "extensionsGallery": {
-    "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
-    "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
-    "itemUrl": "https://marketplace.visualstudio.com/items"
-  }
-}
-```
-
 ### Setup Terminal, Prompt, Neovim, and LazyVim
 ```
 sudo pacman -S --needed bash-completion alacritty eza neovim fd ripgrep xclip python-pynvim nodejs npm
