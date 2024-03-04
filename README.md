@@ -238,18 +238,24 @@ paru -S code code-features code-marketplace
 ### Setup Terminal, Prompt, Neovim, and LazyVim
 ```
 sudo pacman -S --needed bash-completion alacritty eza neovim fd ripgrep xclip python-pynvim nodejs npm
-# Make a backup of your current Neovim files:
-
+```
+#### Make a backup of your current Neovim files:
+```
 mv ~/.config/nvim{,.bak}
 mv ~/.local/share/nvim{,.bak}
 mv ~/.local/state/nvim{,.bak}
 mv ~/.cache/nvim{,.bak}
-# Clone the starter, remove .git, and run Neovim:
-
+```
+#### Clone the starter, remove .git, and run Neovim:
+```
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 nvim
-
+```
+#### Set Alacritty theme (remember to grab the dotfiles) 
+```
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 ```
 ### Organize your personal applications and set up a simplified bash environment with these commands:
 
