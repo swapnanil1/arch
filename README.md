@@ -2,7 +2,7 @@
 
 Welcome to the Arch Linux Configuration Guide! This comprehensive guide is divided into multiple sections to help you set up and optimize your Arch Linux environment.
 
-## Personal Apps & Bashrc Configuration
+# Personal Apps & Bashrc Configuration
 
 ### Switch to Other Shells
 
@@ -48,7 +48,7 @@ plugins=(
 )
 ```
 
-## Fundamentals
+# Fundamentals
 
 ### Connect to Internet
 If you are utilizing a desktop environment, utilize its built-in Wi-Fi capabilities, or connect via Ethernet. Otherwise, install one of the following applications:
@@ -216,7 +216,7 @@ sudo pacman -S --needed bluez bluez-utils
 systemctl enable bluetooth
 ```
 
-### Install paru (AUR Helper)
+## Install paru (AUR Helper)
 
 ```
 mkdir repos
@@ -312,7 +312,7 @@ Enhance read/write speeds by editing /etc/fstab:
 UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,exec,auto		0	0
 ```
 
-## Multimedia & Utilities - KDE, Gnome, Cinnamon, Terminal Setup, and More
+# Multimedia & Utilities - KDE, Gnome, Cinnamon, Terminal Setup, and More
 
 Optimize your multimedia and utility experience by installing various desktop environments, applications, and configuring essential tools:
 
@@ -386,7 +386,7 @@ heimdall flash --RECOVERY recovery.img --no-reboot
 
 ```
 
-## Linux Gaming Setup (Wine & Kernel)
+# Linux Gaming Setup (Wine & Kernel)
 
 ### Install Steam
 
@@ -403,7 +403,7 @@ vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon \
 libva-vdpau-driver lib32-libva-vdpau-driver opencl-clover-mesa lib32-opencl-clover-mesa \
 opencl-rusticl-mesa lib32-opencl-rusticl-mesa rocm-opencl-runtime
 ```
-### Install Wine & Wine Dependencies
+### Install Wine & Wine Dependencies | Escape Wine's infamous dependency hell
 
 ```
 sudo pacman -S --needed gamemode lib32-gamemode wine wine-mono wine-gecko winetricks cabextract unzip \
@@ -461,7 +461,7 @@ ROC_ENABLE_PRE_VEGA=1
 save and exit
 ```
 
-## Setup Timeshift and Take a Clean Backup
+# Setup Timeshift and Take a Clean Backup
 
 1. After completing all above steps, Open Timeshift from the application menu.
 2. If this is your first time using Timeshift, click "Set up" to start the configuration process.
@@ -486,4 +486,57 @@ timeshift --restore
 timeshift --restore --snapshot '2014-10-12_16-29-08' --target /dev/sda1
 timeshift --delete --snapshot '2014-10-12_16-29-08'
 timeshift --delete-all```
+````
+
+## Overclocking 
+CoreCtrl is the recommended way to overclock amd gpu in linux.
+### Installation
+````
+sudo pacman -S --needed corectrl pugixml fmt hwdata procps-ng vulkan-tools mesa-utils util-linux 
+````
+### Enable autostart and advanced overclocking profiles
+````
+cp /usr/share/applications/org.corectrl.corectrl.desktop ~/.config/autostart/org.corectrl.corectrl.desktop
+sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
+sudo touch /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla
+sudo mkdir -p /etc/polkit-1/rules.d/
+sudo touch /etc/polkit-1/rules.d/90-corectrl.rules
+````
+### Add the following to lines to the empty files created (Remember to replace my name with your host username)
+sudo vim /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla
+````
+[User permissions]
+Identity=swapnanil:swapnanil
+Action=org.corectrl.*
+ResultActive=yes
+````
+sudo vim /etc/polkit-1/rules.d/90-corectrl.rules
+````
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("swapnanil")) {
+            return polkit.Result.YES;
+    }
+});
+````
+### Finally Add these update your kernel parameters by adding theses to grub config or systemd boot/loader config
+````amdgpu.ppfeaturemask=0xffffffff````
+
+````amdgpu.dcdebugmask=0x10````
+## Example 
+cat /boot/loader/entries/arch.conf
+````
+title   Arch Linux (linux-zen)
+linux   /vmlinuz-linux-zen
+initrd  /amd-ucode.img
+initrd  /initramfs-linux-zen.img
+options root=PARTUUID=xxx5dfa7-xx11-xx7d-xac9-xsger3521 zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs mitigations=off amdgpu.ppfeaturemask=0xffffffff amdgpu.dcdebugmask=0x10
+````
+After reboot Corectrl should be unlocked with manual voltage and frequency tunning.
+## Optional Personal Firmware for my pc specs
+````
+paru -S linux-firmware-qlogic aic94xx-firmware wd719x-firmware upd72020x-fw
 ````
