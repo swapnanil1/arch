@@ -406,7 +406,7 @@ lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader l
 cups-filters libexif libmikmod libpaper liburing qpdf sdl12-compat sdl_net sdl_sound cups dosbox samba \
 lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity python-evdev vkd3d lib32-vkd3d faudio \
 lib32-libxxf86vm lib32-libxml2 lib32-openssl nss-mdns lib32-gstreamer gstreamer gsm lib32-fontconfig \
-lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane
+lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2
 ```
 
 ### Install Lutris & Lutris Dependencies
