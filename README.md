@@ -513,9 +513,20 @@ polkit.addRule(function(action, subject) {
 });
 ````
 ### Finally Add these update your kernel parameters by adding theses to grub config or systemd boot/loader config
+```mitigations=off``` 
+
 ````amdgpu.ppfeaturemask=0xffffffff````
 
 ````amdgpu.dcdebugmask=0x10````
+
+```amd_prefcore=enable```
+
+```amd_pstate=active```
+
+```zswap.compressor=zstd```
+
+```zswap.max_pool_percent=10```
+
 ## Example 
 cat /boot/loader/entries/arch.conf
 ````
