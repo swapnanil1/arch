@@ -97,16 +97,17 @@ sudo reflector --verbose --country 'India,Bangladesh' --sort rate --protocol htt
 ### Essential System Packages
 
 Install essential packages for a well-rounded Arch Linux system:
-
-```
 # Core System Components
+```
 sudo pacman -S --needed linux-zen-headers dkms ufw timeshift
-
+```
 # General Utilities and Tools
+```
 sudo pacman -S --needed jshon expac git wget acpid avahi net-tools xdg-user-dirs cronie \
 vim openssh htop wget iwd smartmontools xdg-utils
-
+```
 # Enable System Services
+```
 systemctl enable acpid avahi-daemon systemd-timesyncd
 systemctl enable fstrim.timer
 systemctl enable cronie.service
@@ -174,8 +175,8 @@ sudo pacman -S --needed helvum
 
 Install essential fonts, especially required for Electron apps or Steam Proton gaming, and additional Nerd Fonts for a richer experience:
 
-```
 # Common System Fonts
+```
 sudo pacman -S --needed ttf-dejavu ttf-liberation noto-fonts ttf-caladea \
 ttf-carlito ttf-opensans otf-overpass ttf-roboto tex-gyre-fonts ttf-ubuntu-font-family \
 ttf-linux-libertine freetype2 terminus-font ttf-bitstream-vera ttf-droid ttf-fira-mono \
@@ -188,11 +189,12 @@ cantarell-fonts opendesktop-fonts
 
 Install the necessary packages to ensure proper functionality of input devices. Even if not immediately required, these packages do not cause harm by being installed.
 
-```
 # Common Input Drivers
+```
 sudo pacman -S --needed xf86-input-synaptics xf86-input-libinput xf86-input-evdev
-
+```
 # Additional Driver for Virtual Machines
+```
 sudo pacman -S --needed xf86-input-vmmouse   # Required when installing inside a virtual machine
 ```
 
@@ -208,23 +210,22 @@ sudo pacman -S --needed wireless_tools wpa_supplicant ifplugd dialog
 
 Adds Bluetooth Support (Especially for Laptops)
 
+# Install Bluetooth Packages and Enable Bluetooth Service
 ```
-# Install Bluetooth Packages
 sudo pacman -S --needed bluez bluez-utils
-
-# Enable Bluetooth Service
 systemctl enable bluetooth
 ```
 
 ## Install paru (AUR Helper)
 
 ```
-mkdir repos
-cd repos
-git clone https://aur.archlinux.org/paru-bin.git
-cd paru-bin
-makepkg -sic
+mkdir repos \
+cd repos \
+git clone https://aur.archlinux.org/paru-bin.git \
+cd paru-bin \
+makepkg -sic \
 ```
+
 ```
 Tips :) 1.Add 'SkipReview' to /etc/paru.conf to skip review of pkgbuild of every app you install, just like yay
      :) 2.Uncomment/Add 'CleanAfter' to Remove untracked files after installation.
@@ -259,19 +260,23 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 ```
 ### Organize your personal applications and set up a simplified bash environment with these commands:
 
-```bash
-# Browser
+## Browser
+```
 paru -S --needed firefox brave-bin torbrowser-launcher
-
+```
 # Other Apps
+```
 paru -S --needed discord telegram-desktop keepassxc mpv qbittorrent bleachbit appimagelauncher onlyoffice-bin 
-
-# Optional: Remap Keys on keyboard
+```
+### Optional: Remap Keys on keyboard
+```
 paru -S --needed input-remapper-git
 sudo systemctl restart input-remapper
 sudo systemctl enable input-remapper
+```
 
-# Config .zshrc
+### Config .zshrc
+```
 alias ls='eza -al --color=always --group-directories-first'
 alias pi='sudo pacman -S'
 alias pr='sudo pacman -R'
@@ -301,6 +306,7 @@ Enhance read/write speeds by editing /etc/fstab:
 /dev/nvme0n1    /mnt/abcdefgh    btrfs   rw,noatime,ssd,discard=async,compress=zstd:3,space_cache=v2 0 0
 UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,exec,auto		0	0
 ```
+Add ```x-gvfs-show``` to let gnome's nautilus detect as mounted 
 
 # Multimedia & Utilities - KDE, Gnome, Cinnamon, Terminal Setup, and More
 
@@ -408,7 +414,10 @@ lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity p
 lib32-libxxf86vm lib32-libxml2 lib32-openssl nss-mdns lib32-gstreamer gstreamer gsm lib32-fontconfig \
 lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2
 ```
-
+Optional Wine Extra
+```
+sudo pacman -S --needed dbus-glib glew glm gtk2 jsoncpp lib32-dbus-glib lib32-freeglut lib32-glew lib32-gtk2 lib32-libappindicator-gtk2 lib32-libcurl-compat lib32-libcurl-gnutls lib32-libdbusmenu-glib lib32-libdbusmenu-gtk2 lib32-libgcrypt15 lib32-libidn11 lib32-libindicator-gtk2 lib32-libjpeg6-turbo lib32-libmikmod lib32-libmodplug lib32-libpipewire lib32-libpng12 lib32-librtmp0 lib32-libtiff4 lib32-libudev0-shim lib32-libusb lib32-libvpx1.3 lib32-libwebp lib32-openssl lib32-pipewire lib32-sdl12-compat lib32-sdl2_image lib32-sdl2_mixer lib32-sdl2_ttf lib32-sdl_image lib32-sdl_mixer lib32-sdl_ttf libcurl-compat libcurl-gnutls libdbusmenu-gtk2 libgcrypt15 libidn11 libindicator-gtk2 libjpeg6-turbo libliftoff libpng12 librtmp0 libtiff4 libudev0-shim libvpx1.3 openssl openvr opusfile sdl2_image sdl2_mixer sdl2_ttf sdl_image sdl_mixer sdl_ttf seatd wlroots xcb-util-errors gamescope glfw steam-native-runtime ttf-liberation wqy-zenhei
+```
 ### Install Lutris & Lutris Dependencies
 
 ```
