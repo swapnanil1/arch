@@ -238,7 +238,7 @@ paru -S code code-features code-marketplace
 ```
 ### Setup Terminal, Prompt, Neovim, and LazyVim
 ```
-sudo pacman -S --needed bash-completion alacritty eza neovim fd ripgrep xclip python-pynvim nodejs npm
+sudo pacman -S --needed alacritty eza neovim fd ripgrep python-pynvim nodejs npm
 ```
 #### Make a backup of your current Neovim files:
 ```
