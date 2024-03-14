@@ -487,7 +487,7 @@ timeshift --delete --snapshot '2014-10-12_16-29-08'
 timeshift --delete-all```
 ````
 
-## Overclocking 
+## Overclocking & Optimize Game Performance
 CoreCtrl is the recommended way to overclock amd gpu in linux.
 ### Installation
 ````
@@ -546,6 +546,22 @@ initrd  /initramfs-linux-zen.img
 options root=PARTUUID=xxx5dfa7-xx11-xx7d-xac9-xsger3521 zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs mitigations=off amdgpu.ppfeaturemask=0xffffffff amdgpu.dcdebugmask=0x10
 ````
 After reboot Corectrl should be unlocked with manual voltage and frequency tunning.
+
+## Optimize Game Performance
+sudo vim /etc/sysctl.d/80-gamecompatibility.conf
+```
+vm.max_map_count = 2147483642
+```
+sudo vim /etc/sysctl.d/99-splitlock.conf
+```
+kernel.split_lock_mitigate=0
+```
+sudo vim /etc/sysctl.d/99-swappiness.conf
+```
+vm.swappiness = 10
+vm.vfs_cache_pressure = 50
+```
+
 ## Optional Personal Firmware for my pc specs
 ````
 paru -S linux-firmware-qlogic aic94xx-firmware wd719x-firmware upd72020x-fw
