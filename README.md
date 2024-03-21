@@ -304,6 +304,7 @@ Enhance read/write speeds by editing /etc/fstab:
 
 ```
 /dev/nvme0n1    /mnt/abcdefgh    btrfs   rw,noatime,ssd,discard=async,compress=zstd:3,space_cache=v2 0 0
+/dev/nvme0n1    /mnt/zxcvedfd    btrfs   rw,noatime,nodatasum,nodatacow,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@	
 UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,exec,auto		0	0
 ```
 Add ```x-gvfs-show``` to let gnome's nautilus detect as mounted 
@@ -524,6 +525,8 @@ polkit.addRule(function(action, subject) {
 ### Finally Add these update your kernel parameters by adding theses to grub config or systemd boot/loader config
 ```mitigations=off``` 
 
+```nowatchdog```
+
 ````amdgpu.ppfeaturemask=0xffffffff````
 
 ````amdgpu.dcdebugmask=0x10````
@@ -543,7 +546,7 @@ title   Arch Linux (linux-zen)
 linux   /vmlinuz-linux-zen
 initrd  /amd-ucode.img
 initrd  /initramfs-linux-zen.img
-options root=PARTUUID=xxx5dfa7-xx11-xx7d-xac9-xsger3521 zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs mitigations=off amdgpu.ppfeaturemask=0xffffffff amdgpu.dcdebugmask=0x10
+options root=PARTUUID=xxx5dfa7-xx11-xx7d-xac9-xsger3521 zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs mitigations=off nowatchdog amdgpu.ppfeaturemask=0xffffffff amdgpu.dcdebugmask=0x10 amd_prefcore=enable amd_pstate=active
 ````
 After reboot Corectrl should be unlocked with manual voltage and frequency tunning.
 
