@@ -99,7 +99,13 @@ sudo reflector --verbose --country 'India,Bangladesh' --sort rate --protocol htt
 Install essential packages for a well-rounded Arch Linux system:
 # Core System Components
 ```
-sudo pacman -S --needed linux-zen-headers dkms ufw timeshift
+sudo pacman -S --needed linux-headers dkms ufw timeshift
+```
+# Set Firewall Defaults
+```
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
 ```
 # General Utilities and Tools
 ```
