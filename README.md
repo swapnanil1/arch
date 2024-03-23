@@ -134,7 +134,7 @@ Install essential archive and file system utilities with the following commands:
 
 ```
 # Compression Utilities
-sudo pacman -S --needed p7zip unrar unarchiver unzip unace xz rsync
+sudo pacman -S --needed p7zip unrar unarchiver unzip unace xz rsync zip unarj lrzip lha cpio arj
 
 # File System Utilities
 sudo pacman -S --needed nfs-utils cifs-utils ntfs-3g exfat-utils gvfs udisks2
@@ -411,9 +411,9 @@ sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcryp
 ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 \
 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader \
 cups-filters libexif libmikmod libpaper liburing qpdf sdl12-compat sdl_net sdl_sound cups dosbox samba \
-lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity python-evdev vkd3d lib32-vkd3d faudio \
+lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity python-evdev vkd3d lib32-vkd3d innoextract \
 lib32-libxxf86vm lib32-libxml2 lib32-openssl nss-mdns lib32-gstreamer gstreamer gsm lib32-fontconfig \
-lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2
+lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2 
 ```
 Optional Wine Extra
 ```
@@ -430,7 +430,7 @@ libgirepository gobject-introspection
 ### Install FPS Overlay
 
 ```
-sudo pacman -S --needed mangohud lib32-mangohud goverlay
+sudo pacman -S --needed mangohud lib32-mangohud goverlay lib32-vulkan-mesa-layers vulkan-tools
 ```
 ### Epic Games 
 ````
