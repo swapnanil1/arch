@@ -570,7 +570,47 @@ sudo vim /etc/sysctl.d/99-swappiness.conf
 vm.swappiness = 10
 vm.vfs_cache_pressure = 50
 ```
-
+## Enable active noice suppression in headset mic
+```
+sudo pacman -S noise-suppression-for-voice
+```
+mkdir -p ~/.config/pipewire/pipewire.conf.d/
+vim ~/.config/pipewire/pipewire.conf.d/99-input-denoising.conf
+```
+context.modules = [
+{   name = libpipewire-module-filter-chain
+    args = {
+        node.description =  "Noise Canceling source"
+        media.name =  "Noise Canceling source"
+        filter.graph = {
+            nodes = [
+                {
+                    type = ladspa
+                    name = rnnoise
+                    plugin = /usr/lib/ladspa/librnnoise_ladspa.so
+                    label = noise_suppressor_mono
+                    control = {
+                        "VAD Threshold (%)" = 50.0
+                        "VAD Grace Period (ms)" = 200
+                        "Retroactive VAD Grace (ms)" = 0
+                    }
+                }
+            ]
+        }
+        capture.props = {
+            node.name =  "capture.rnnoise_source"
+            node.passive = true
+            audio.rate = 48000
+        }
+        playback.props = {
+            node.name =  "rnnoise_source"
+            media.class = Audio/Source
+            audio.rate = 48000
+        }
+    }
+}
+]
+```
 ## Optional Personal Firmware for my pc specs
 ````
 paru -S linux-firmware-qlogic aic94xx-firmware wd719x-firmware upd72020x-fw
