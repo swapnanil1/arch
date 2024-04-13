@@ -400,43 +400,41 @@ sudo pacman -S --needed steam
 
 Install the necessary graphics driver components for AMD GPUs:
 ```
-sudo pacman -S --needed xorg-server xorg-xinit xf86-video-amdgpu xf86-video-ati \
-mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau \
+sudo pacman -S --needed mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau \
 vulkan-icd-loader lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon \
 libva-vdpau-driver lib32-libva-vdpau-driver opencl-clover-mesa lib32-opencl-clover-mesa \
 opencl-rusticl-mesa lib32-opencl-rusticl-mesa rocm-opencl-runtime
 ```
+Optional (For X11)
+```
+sudo pacman -S --needed xorg-server xorg-xinit xf86-video-amdgpu xf86-video-ati
+```
 ### Install Wine & Wine Dependencies | Escape Wine's infamous dependency hell
-
+Recommended Install
 ```
-sudo pacman -S --needed gamemode lib32-gamemode wine wine-mono wine-gecko winetricks cabextract unzip \
-giflib lib32-libnm lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls \
-mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error \
-lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo \
-sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama \
-ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 \
-lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader \
-cups-filters libexif libmikmod libpaper liburing qpdf sdl12-compat sdl_net sdl_sound cups dosbox samba \
-lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity python-evdev vkd3d lib32-vkd3d innoextract \
-lib32-libxxf86vm lib32-libxml2 lib32-openssl nss-mdns lib32-gstreamer gstreamer gsm lib32-fontconfig \
-lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2 
+sudo pacman -S --needed alsa-lib alsa-plugins cabextract cups dosbox gamemode giflib glfw gnutls gst-plugins-base-libs gtk3 innoextract lib32-alsa-lib lib32-alsa-plugins lib32-fontconfig lib32-gamemode lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libgcrypt lib32-libgpg-error lib32-libjpeg-turbo lib32-libldap lib32-libpng lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-mpg123 lib32-ncurses lib32-ocl-icd lib32-openal lib32-opencl-icd-loader lib32-sqlite lib32-v4l-utils lib32-vkd3d lib32-vulkan-icd-loader libgcrypt libgpg-error libjpeg-turbo libldap libpng libpulse libva libxcomposite libxinerama libxslt mpg123 ncurses ocl-icd openal opencl-icd-loader samba sqlite ttf-liberation unzip v4l-utils vkd3d vulkan-icd-loader wine wine-gecko wine-mono winetricks wqy-zenhei 
 ```
-Optional Wine Extra
+Wine Extras (More Bloat & Compatibility) 
 ```
-sudo pacman -S --needed dbus-glib glew glm gtk2 jsoncpp lib32-dbus-glib lib32-freeglut lib32-glew lib32-gtk2 lib32-libappindicator-gtk2 lib32-libcurl-compat lib32-libcurl-gnutls lib32-libdbusmenu-glib lib32-libdbusmenu-gtk2 lib32-libgcrypt15 lib32-libidn11 lib32-libindicator-gtk2 lib32-libjpeg6-turbo lib32-libmikmod lib32-libmodplug lib32-libpipewire lib32-libpng12 lib32-librtmp0 lib32-libtiff4 lib32-libudev0-shim lib32-libusb lib32-libvpx1.3 lib32-libwebp lib32-openssl lib32-pipewire lib32-sdl12-compat lib32-sdl2_image lib32-sdl2_mixer lib32-sdl2_ttf lib32-sdl_image lib32-sdl_mixer lib32-sdl_ttf libcurl-compat libcurl-gnutls libdbusmenu-gtk2 libgcrypt15 libidn11 libindicator-gtk2 libjpeg6-turbo libliftoff libpng12 librtmp0 libtiff4 libudev0-shim libvpx1.3 openssl openvr opusfile sdl2_image sdl2_mixer sdl2_ttf sdl_image sdl_mixer sdl_ttf seatd wlroots xcb-util-errors gamescope glfw steam-native-runtime ttf-liberation wqy-zenhei
+sudo pacman -S --needed lib32-libnm cups-filters libexif libmikmod libpaper liburing qpdf sdl12-compat sdl_net sdl_sound lib32-libxss lib32-nspr lib32-nss lsb-release lsof usbutils xorg-xrandr zenity python-evdev lib32-libxxf86vm lib32-libxml2 lib32-openssl nss-mdns lib32-gstreamer gstreamer gsm lib32-glu lib32-libsm lib32-libice gst-plugins-good lib32-gst-plugins-base lib32-gst-plugins-good sane schedtool ccache lib32-sdl2 
+```
+Wine Extreme (Most Bloat & Compatibility) 
+```
+sudo pacman -S --needed dbus-glib glew glm gtk2 jsoncpp lib32-dbus-glib lib32-freeglut lib32-glew lib32-gtk2 lib32-libappindicator-gtk2 lib32-libcurl-compat lib32-libcurl-gnutls lib32-libdbusmenu-glib lib32-libdbusmenu-gtk2 lib32-libgcrypt15 lib32-libidn11 lib32-libindicator-gtk2 lib32-libjpeg6-turbo lib32-libmikmod lib32-libmodplug lib32-libpipewire lib32-libpng12 lib32-librtmp0 lib32-libtiff4 lib32-libudev0-shim lib32-libusb lib32-libvpx1.3 lib32-libwebp lib32-pipewire lib32-sdl12-compat lib32-sdl2_image lib32-sdl2_mixer lib32-sdl2_ttf lib32-sdl_image lib32-sdl_mixer lib32-sdl_ttf libcurl-compat libcurl-gnutls libdbusmenu-gtk2 libgcrypt15 libidn11 libindicator-gtk2 libjpeg6-turbo libliftoff libpng12 librtmp0 libtiff4 libudev0-shim libvpx1.3 openssl openvr opusfile sdl2_image sdl2_mixer sdl2_ttf sdl_image sdl_mixer sdl_ttf seatd wlroots xcb-util-errors
 ```
 ### Install Lutris & Lutris Dependencies
+Recommended 
+```
+sudo pacman -S --needed lutris vulkan-tools
+```
+Optional Extra Lutris Dependency
+```
+sudo pacman -S --needed python-gobject python-requests python-pillow python-yaml python-setproctitle python-distro python-evdev psmisc p7zip curl soundfont-fluid libgirepository gobject-introspection gobject-introspection-runtime
+```
+### Install FPS Overlay & gamescope
 
 ```
-sudo pacman -S --needed lutris python-gobject python-requests python-pillow python-yaml \
-python-setproctitle python-distro python-evdev psmisc p7zip curl cabextract soundfont-fluid \
-libgirepository gobject-introspection
-```
-
-### Install FPS Overlay
-
-```
-sudo pacman -S --needed mangohud lib32-mangohud goverlay lib32-vulkan-mesa-layers vulkan-tools
+sudo pacman -S --needed mangohud lib32-mangohud goverlay gamescope lib32-vulkan-mesa-layers lib32-vulkan-mesa-layers vulkan-tools
 ```
 ### Epic Games 
 ````
