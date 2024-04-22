@@ -91,7 +91,7 @@ Improve the performance of your Arch Linux system by optimizing mirror configura
 
 ```
 sudo pacman -S --needed reflector
-sudo reflector --verbose --country 'India,Bangladesh' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --latest 5 --download-timeout 15 --country 'India,Bangladesh,China' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
 ```
 
 ### Essential System Packages
