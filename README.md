@@ -101,12 +101,6 @@ Install essential packages for a well-rounded Arch Linux system:
 ```
 sudo pacman -S --needed linux-headers dkms ufw timeshift
 ```
-# Set Firewall Defaults
-```
-sudo ufw enable
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-```
 # General Utilities and Tools
 ```
 sudo pacman -S --needed jshon expac git wget acpid avahi net-tools xdg-user-dirs cronie \
@@ -115,10 +109,16 @@ vim openssh htop wget iwd smartmontools xdg-utils
 # Enable System Services
 ```
 systemctl enable acpid avahi-daemon systemd-timesyncd
-systemctl enable fstrim.timer
+systemctl enable fstrim.timer # This is optional if discard=async in enabled in fstab
 systemctl enable cronie.service
+systemctl enable ufw.service
 ```
-
+# Set Firewall Defaults
+```
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
 ### Networking Setup
 
 Configure networking on your Arch Linux system with the following commands:
