@@ -91,7 +91,7 @@ Improve the performance of your Arch Linux system by optimizing mirror configura
 
 ```
 sudo pacman -S --needed reflector
-sudo reflector --verbose --latest 5 --download-timeout 15 --country 'India,Bangladesh,China' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --latest 8 --download-timeout 16 --country 'India,Bangladesh,China' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
 ```
 
 ### Essential System Packages
@@ -225,11 +225,11 @@ systemctl enable bluetooth
 ## Install paru (AUR Helper)
 
 ```
-mkdir repos \
-cd repos \
-git clone https://aur.archlinux.org/paru-bin.git \
-cd paru-bin \
-makepkg -sic \
+mkdir repos
+cd repos
+git clone https://aur.archlinux.org/paru-bin.git
+cd paru-bin
+makepkg -sic
 ```
 
 ```
@@ -275,13 +275,43 @@ paru -S --needed firefox brave-bin torbrowser-launcher
 paru -S --needed webcord-bin telegram-desktop keepassxc mpv qbittorrent bleachbit appimagelauncher onlyoffice-bin 
 ```
 ### Optional: Remap Keys on keyboard
+#### Methord 1 (CLI): Keyd
+```
+sudo pacman -S keyd
+sudo systemctl enable keyd
+```
+Edit Keyd config file:
+```
+sudo vim /etc/keyd/default.conf
+```
+Add these (ids section -> Specify keyboard | main section > remap keys):
+```
+[ids]
+
+*
+
+[main]
+
+f9=noop
+```
+#### Important tips for keyd:-
+```
+1. View logs to fix error using this command
+ sudo journalctl -eu keyd -f
+2. Reload your default.conf without reboot
+ sudo keyd reload
+3. To test what keyboard and what you press on (useful for setting default.conf)
+ sudo keyd monitor
+4. noop disables a key 
+```
+#### Methord 2 (GUI): input-remapper 
 ```
 paru -S --needed input-remapper-git
 sudo systemctl restart input-remapper
 sudo systemctl enable input-remapper
 ```
 
-### Config .zshrc
+### Config .zshrc/.bashrc/config.fish
 ```
 alias ls='eza -al --color=always --group-directories-first'
 alias pi='sudo pacman -S'
