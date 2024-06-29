@@ -291,17 +291,19 @@ Add these (ids section -> Specify keyboard | main section > remap keys):
 *
 
 [main]
-
 f9=noop
+leftmeta=leftalt
+leftalt=leftmeta
+
 ```
 #### Important tips for keyd:-
 ```
-1. View logs to fix error using this command
- sudo journalctl -eu keyd -f
+1. To test what keyboard and what you press on (useful for setting default.conf)
+ sudo keyd monitor
 2. Reload your default.conf without reboot
  sudo keyd reload
-3. To test what keyboard and what you press on (useful for setting default.conf)
- sudo keyd monitor
+3. View logs to fix error using this command
+ sudo journalctl -eu keyd -f
 4. noop disables a key 
 ```
 #### Methord 2 (GUI): input-remapper 
