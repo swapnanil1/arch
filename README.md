@@ -435,7 +435,7 @@ sudo pacman -S --needed arc-gtk-theme arc-solid-gtk-theme arc-icon-theme papirus
 ### Cinnamon Desktop Apps & Themes
 
 ```
-paru -S --needed pix xviewer webapp-manager xed xreader galculator gnome-screenshot gparted webkit2gtk
+paru -S --needed pix xviewer webapp-manager xed xreader galculator gnome-screenshot gparted webkit2gtk gnome-terminal file-roller celluloid drawing gufw warpinator
 paru -S --needed mint-themes mint-y-icons mint-backgrounds
 ```
 
