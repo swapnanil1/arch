@@ -436,7 +436,7 @@ sudo pacman -S --needed arc-gtk-theme arc-solid-gtk-theme arc-icon-theme papirus
 
 ```
 paru -S --needed xed xreader galculator gnome-screenshot gparted webkit2gtk gnome-terminal file-roller celluloid drawing gufw warpinator mint-themes mint-y-icons
-paru -S --needed nemo-audio-tab  nemo-emblems  nemo-fileroller nemo-image-converter nemo-pastebin nemo-preview  nemo-python  nemo-seahorse nemo-share nemo-terminal
+paru -S --needed nemo-audio-tab  nemo-emblems  nemo-fileroller nemo-image-converter nemo-pastebin nemo-preview  nemo-python  nemo-seahorse nemo-share gvfs-mtp
 paru -S --needed pix xviewer webapp-manager mint-backgrounds
 ```
 
