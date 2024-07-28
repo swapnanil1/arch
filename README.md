@@ -809,3 +809,5 @@ Ananicy (ANother Auto NICe daemon) — is a shell daemon created to manage proce
 cachyos-ananicy-rules provides rules of popular games and apps that ananicy-cpp can interface with. 
 
 ```game-performance %command%``` cachyos-settings contains "game-performance" script that is used as a launch option just like gamemoderun to start ananicy
+
+Ananicy-cpp + Gamemode is NOT recommended as they act as similar programs can will cause system instabiliity
