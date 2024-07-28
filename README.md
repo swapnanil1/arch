@@ -805,5 +805,7 @@ paru -S linux-firmware-qlogic aic94xx-firmware wd719x-firmware upd72020x-fw
 ```paru -S ananicy-cpp cachyos-ananicy-rules power-profiles-daemon cpupower upower cachyos-settings```
 #### Notes : 
 Ananicy (ANother Auto NICe daemon) — is a shell daemon created to manage processes' IO and CPU priorities, with community-driven set of rules for popular applications. 
-cachyos-ananicy-rules provides rules of popular games and apps that ananicy-cpp can interface with
+
+cachyos-ananicy-rules provides rules of popular games and apps that ananicy-cpp can interface with. 
+
 ```game-performance %command%``` cachyos-settings contains "game-performance" script that is used as a launch option just like gamemoderun to start ananicy
