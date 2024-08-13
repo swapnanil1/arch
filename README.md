@@ -398,7 +398,7 @@ Enhance read/write speeds by editing /etc/fstab:
 ```
 /dev/nvme0n1    /mnt/abcdefgh    btrfs   rw,noatime,ssd,discard=async,compress=zstd:3,space_cache=v2 0 0
 /dev/nvme0n1    /mnt/zxcvedfd    btrfs   rw,noatime,nodatasum,nodatacow,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@
-UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,exec,auto		0	0
+UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,auto,data=writeback,barrier=0,nobh,errors=remount-ro		0	0
 ```
 
 Add `x-gvfs-show` to let gnome's nautilus detect as mounted
