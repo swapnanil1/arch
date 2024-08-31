@@ -7,53 +7,10 @@ Welcome to the Arch Linux Configuration Guide! This comprehensive guide is divid
 ### Switch to Other Shells
 
 ```
-# Zsh (Z Shell)
-sudo pacman -S --needed zsh zsh-completions
-sudo chsh -s /usr/bin/zsh swapnanil
-reboot
-
 # Fish (Friendly Interactive Shell)
-sudo pacman -S --needed fish
+sudo pacman -S --needed fish ttf-jetbrains-mono-nerd
 sudo chsh -s /usr/bin/fish swapnanil
 reboot
-```
-
-### Install OH-MY-ZSH, Powerlevel10K & fish-like autocomplete for zsh
-
-#### Oh-My-Zsh
-
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-#### Nerd Fonts for terminal
-
-```
-sudo pacman -S --needed ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd \
-ttf-dejavu-nerd ttf-roboto-mono-nerd ttf-sourcecodepro-nerd
-```
-
-#### Powerlevel10K
-
-```
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
-
-#### zsh-autosuggestions like fish shell
-
-```
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
-
-#### Add this plugin (inside ~/.zshrc):
-
-```
-plugins=(
-    # other plugins...
-    zsh-autosuggestions
-)
 ```
 
 # Fundamentals
@@ -111,7 +68,7 @@ Install essential packages for a well-rounded Arch Linux system:
 # Core System Components
 
 ```
-sudo pacman -S --needed linux-headers dkms ufw timeshift
+sudo pacman -S --needed dkms ufw timeshift
 ```
 
 # General Utilities and Tools
@@ -124,10 +81,10 @@ vim openssh htop wget iwd smartmontools xdg-utils
 # Enable System Services
 
 ```
-systemctl enable acpid avahi-daemon systemd-timesyncd
-systemctl enable fstrim.timer # This is optional if discard=async in enabled in fstab
 systemctl enable cronie.service
 systemctl enable ufw.service
+systemctl enable acpid avahi-daemon systemd-timesyncd
+systemctl enable fstrim.timer # This is optional if discard=async in enabled in fstab
 ```
 
 # Set Firewall Defaults
@@ -217,7 +174,7 @@ cantarell-fonts opendesktop-fonts
 
 Install the necessary packages to ensure proper functionality of input devices. Even if not immediately required, these packages do not cause harm by being installed.
 
-# Common Input Drivers
+# Common Input Drivers (Xorg)
 
 ```
 sudo pacman -S --needed xf86-input-synaptics xf86-input-libinput xf86-input-evdev
@@ -398,7 +355,7 @@ Enhance read/write speeds by editing /etc/fstab:
 ```
 /dev/nvme0n1    /mnt/abcdefgh    btrfs   rw,noatime,ssd,discard=async,compress=zstd:3,space_cache=v2 0 0
 /dev/nvme0n1    /mnt/zxcvedfd    btrfs   rw,noatime,nodatasum,nodatacow,ssd,discard=async,space_cache=v2,subvolid=256,subvol=/@
-UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,auto,data=writeback,barrier=0,nobh,errors=remount-ro		0	0
+UUID=xxxxxxxx	/mnt/SeagateRead	ext4	defaults,noatime,user,auto,exec,data=writeback,barrier=0,nobh,errors=remount-ro		0	0
 ```
 
 Add `x-gvfs-show` to let gnome's nautilus detect as mounted
