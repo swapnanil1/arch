@@ -43,6 +43,7 @@ Cache=yes
 CacheSize=10000
 ```
 If you prefer security over faster internet change DNSSEC to yes
+```sudo resolvectl flush-caches```
 
 ### Automatic Package Cache Cleanup
 
