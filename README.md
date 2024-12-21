@@ -25,6 +25,25 @@ or
 sudo pacman -S --needed iwctl     # For interacting with iwd (iNet Wireless Daemon)
 ```
 
+### Faster Internet using DNS
+Using Faster DNS and enable caching with increased size:
+
+```sudo vim /etc/systemd/resolved.conf ```
+```bash
+[Resolve]
+DNS=9.9.9.9
+FallbackDNS=149.112.112.112
+DNSOverTLS=yes
+DNSStubListener=yes
+DNSSEC=no
+ReadEtcHosts=yes
+MulticastDNS=yes
+LLMNR=yes
+Cache=yes
+CacheSize=10000
+```
+If you prefer security over faster internet change DNSSEC to yes
+
 ### Automatic Package Cache Cleanup
 
 Implement a Pacman hook to automatically clear the package cache when necessary.
