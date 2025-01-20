@@ -299,7 +299,7 @@ paru -S --needed firefox brave-bin torbrowser-launcher
 # Other Apps
 
 ```
-paru -S --needed webcord-bin telegram-desktop keepassxc mpv qbittorrent bleachbit appimagelauncher onlyoffice-bin
+paru -S --needed vesktop telegram-desktop keepassxc mpv qbittorrent bleachbit onlyoffice-bin
 ```
 
 ### Optional: Remap Keys on keyboard
