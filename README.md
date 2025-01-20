@@ -610,9 +610,13 @@ sudo systemctl enable amdgpu-clocks
 ```
 
 ### Enable autostart and advanced overclocking profiles
-#### Find your GPU's PCI <domain>:<bus>:<dev>.<function> numbers using lspci.
+Set the amdgpu-custom-state.pci:0000:xx:xx.x as your pci number. My card is 26:00.0
 
 ```sudo vim /etc/default/amdgpu-custom-state.pci:0000:26:00.0```
+
+Find your GPU's PCI ``` <domain>:<bus>:<dev>.<function>``` numbers using lspci.
+
+In my case my RX 570 is ```26:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Ellesmere [Radeon RX 470/480/570/570X/580/580X/590] (rev ef)```
 
 ```
 # Set custom GPU states 6 & 7:
@@ -643,7 +647,7 @@ FORCE_PERF_LEVEL: manual
 
 `amdgpu.ppfeaturemask=0xffffffff`
 
-`amdgpu.dcdebugmask=0x10`Optional
+`amdgpu.dcdebugmask=0x10` Optional
 
 #### Regenerate initramfs
 `sudo dracut --regenerate-all --force` if using dracut
