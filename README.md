@@ -141,7 +141,7 @@ Install essential archive and file system utilities with the following commands:
 
 ```
 # Compression Utilities
-sudo pacman -S --needed p7zip unrar unarchiver unzip unace xz rsync zip unarj lrzip lha cpio arj
+sudo pacman -S --needed p7zip unrar unzip unace xz rsync zip unarj lrzip lha cpio arj
 
 # File System Utilities
 sudo pacman -S --needed nfs-utils cifs-utils ntfs-3g exfat-utils gvfs udisks2
@@ -157,7 +157,13 @@ sudo pacman -S gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-p
 
 ### Sound System Setup
 
-Configure the sound system on your Arch Linux system with the following commands:
+#### New! improve pipewire performance. This mitigates a lot of the common issues such as audio glitching or cutting out in certain scenarios.
+
+```
+sudo pacman -S realtime-privileges
+sudo gpasswd -a $USER realtime
+```
+#### Configure the sound system on your Arch Linux system with the following commands:
 
 ```
 # Sound System Components
@@ -424,7 +430,8 @@ paru -S --needed pix xviewer webapp-manager mint-backgrounds
 
 To enable the Android Debug Bridge for your user, use the following commands:
 
-```# Install ADB and Udev rules for Android
+```
+# Install ADB and Udev rules for Android
 sudo pacman -S --needed android-tools android-udev
 
 # Add your user to the adbusers group
@@ -590,100 +597,73 @@ timeshift --delete-all```
 
 ## Overclocking & Optimize Game Performance
 
-CoreCtrl is the recommended way to overclock amd gpu in linux.
+amdgpu-clock is the minimal way to overclock amd gpu in linux.
 
 ### Installation
 
 ```
-sudo pacman -S --needed corectrl pugixml fmt hwdata procps-ng vulkan-tools mesa-utils util-linux
+git clone https://github.com/sibradzic/amdgpu-clocks
+cd amdgpu-clocks
+cp amdgpu-clocks /usr/local/bin/amdgpu-clocks
+cp amdgpu-clocks.service /etc/systemd/system/
+sudo systemctl enable amdgpu-clocks
 ```
 
 ### Enable autostart and advanced overclocking profiles
+#### Find your GPU's PCI <domain>:<bus>:<dev>.<function> numbers using lspci.
+
+```sudo vim /etc/default/amdgpu-custom-state.pci:0000:26:00.0```
 
 ```
-cp /usr/share/applications/org.corectrl.corectrl.desktop ~/.config/autostart/org.corectrl.corectrl.desktop
-sudo mkdir -p /etc/polkit-1/localauthority/50-local.d/
-sudo touch /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla
-sudo mkdir -p /etc/polkit-1/rules.d/
-sudo touch /etc/polkit-1/rules.d/90-corectrl.rules
-```
-
-### Add the following to lines to the empty files created (Remember to replace my name with your host username)
-
-sudo vim /etc/polkit-1/localauthority/50-local.d/90-corectrl.pkla
-
-```
-[User permissions]
-Identity=swapnanil:swapnanil
-Action=org.corectrl.*
-ResultActive=yes
-```
-
-sudo vim /etc/polkit-1/rules.d/90-corectrl.rules
-
-```
-polkit.addRule(function(action, subject) {
-    if ((action.id == "org.corectrl.helper.init" ||
-         action.id == "org.corectrl.helperkiller.init") &&
-        subject.local == true &&
-        subject.active == true &&
-        subject.isInGroup("swapnanil")) {
-            return polkit.Result.YES;
-    }
-});
+# Set custom GPU states 6 & 7:
+OD_SCLK:
+6:       1300MHz        1050mV
+7:       1400MHz        1090mV
+# Set custom memory states 1 & 2:
+OD_MCLK:
+1:       1750MHz        750mV
+2:       1900MHz        900mV
+# Only allow SCLK states 5, 6 & 7:
+FORCE_SCLK: 5 6 7
+# Force fixed memory state:
+FORCE_MCLK: 2
+# Force power limit (in micro watts):
+FORCE_POWER_CAP: 187000000
+# In order to allow FORCE_SCLK & FORCE_MCLK:
+FORCE_PERF_LEVEL: manual
 ```
 
 ### Finally Add these update your kernel parameters by adding theses to grub config or systemd boot/loader config
 
-`mitigations=off`
+`zswap.enabled=0`
 
 `nowatchdog`
 
+`mitigations=off`
+
 `amdgpu.ppfeaturemask=0xffffffff`
 
-`amdgpu.dcdebugmask=0x10`
+`amdgpu.dcdebugmask=0x10`Optional
 
-`amd_prefcore=enable`
+#### Regenerate initramfs
+`sudo dracut --regenerate-all --force` if using dracut
 
-`amd_pstate=active`
+`sudo mkinitcpio -P` if using mkinitcpio
 
-`zswap.compressor=zstd`
-
-`zswap.max_pool_percent=10`
-
-## Example
-
-cat /boot/loader/entries/arch.conf
-
-```
-title   Arch Linux (linux-zen)
-linux   /vmlinuz-linux-zen
-initrd  /amd-ucode.img
-initrd  /initramfs-linux-zen.img
-options root=PARTUUID=xxx5dfa7-xx11-xx7d-xac9-xsger3521 zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs mitigations=off nowatchdog amdgpu.ppfeaturemask=0xffffffff amdgpu.dcdebugmask=0x10 amd_prefcore=enable amd_pstate=active
-```
-
-After reboot Corectrl should be unlocked with manual voltage and frequency tunning.
+After reboot check `systemctl status amdgpu-clocks.service` it should be enabled with manual voltage and frequency tunning.
 
 ## Optimize Game Performance
 
 sudo vim /etc/sysctl.d/80-gamecompatibility.conf
 
 ```
-vm.max_map_count = 2147483642
+vm.max_map_count = 16777216
 ```
 
 sudo vim /etc/sysctl.d/99-splitlock.conf
 
 ```
 kernel.split_lock_mitigate=0
-```
-
-sudo vim /etc/sysctl.d/99-swappiness.conf
-
-```
-vm.swappiness = 10
-vm.vfs_cache_pressure = 50
 ```
 
 ## Enable active noice suppression in headset mic
@@ -782,12 +762,27 @@ paru -S linux-firmware-qlogic aic94xx-firmware wd719x-firmware upd72020x-fw
 
 ## Using ananicy-cpp instead of gamemode
 ### Install CachyOS'S Repos Before Running
+
 ```paru -S ananicy-cpp cachyos-ananicy-rules power-profiles-daemon cpupower upower cachyos-settings```
+
 #### Notes : 
 Ananicy (ANother Auto NICe daemon) — is a shell daemon created to manage processes' IO and CPU priorities, with community-driven set of rules for popular applications. 
-
 cachyos-ananicy-rules provides rules of popular games and apps that ananicy-cpp can interface with. 
-
-```game-performance %command%``` cachyos-settings contains "game-performance" script that is used as a launch option just like gamemoderun to start ananicy
+#### trigger the gamemode
+```game-performance LD_PRELOAD="" %command%``` cachyos-settings contains "game-performance" script that is used as a launch option just like gamemoderun to start ananicy
 
 Ananicy-cpp + Gamemode is NOT recommended as they act as similar programs can will cause system instabiliity
+
+#### set tweaks for cpu and pci latency
+```sudo powerprofilesctl set performance``` sets cpu to performance but requires "amd core boost" set as auto/enabled.
+
+```sudo cpupower frequency-set -g performance``` sets cpu to performace 
+
+```sudo systemctl enable --now pci-latency.service``` improves pci performance
+
+#### check amd-pstate status and cpu governer | Inside the Mobo BIOS Remember to enable cppc and core boost and disable c-states. 
+```cat /sys/devices/system/cpu/amd_pstate/status``` Should say active
+
+```cat /sys/devices/system/cpu/amd_pstate/prefcore``` Should say enabled
+
+```cat /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference``` should say `performance` while gaming and `balance_performance` in general desktop use
