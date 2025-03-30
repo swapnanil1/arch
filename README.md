@@ -37,8 +37,8 @@ DNSOverTLS=yes
 DNSStubListener=yes
 DNSSEC=no
 ReadEtcHosts=yes
-MulticastDNS=yes
-LLMNR=yes
+MulticastDNS=no
+LLMNR=no
 Cache=yes
 CacheSize=10000
 ```
