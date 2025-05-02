@@ -40,8 +40,10 @@ ReadEtcHosts=yes
 MulticastDNS=no
 LLMNR=no
 Cache=yes
-CacheSize=10000
+#CacheSize=10000
 ```
+```sudo systemctl enable --now systemd-resolved.service```
+
 If you prefer security over faster internet change DNSSEC to yes.
 
 Flush DNS cache using this command:
@@ -81,7 +83,7 @@ Improve the performance of your Arch Linux system by optimizing mirror configura
 
 ```
 sudo pacman -S --needed reflector
-sudo reflector --verbose --latest 8 --download-timeout 16 --country 'India,Bangladesh,China' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --latest 8 --download-timeout 16 --country 'India,Bangladesh' --sort rate --protocol https,http --save /etc/pacman.d/mirrorlist
 ```
 
 ### Essential System Packages
@@ -91,7 +93,7 @@ Install essential packages for a well-rounded Arch Linux system:
 # Core System Components
 
 ```
-sudo pacman -S --needed dkms ufw timeshift
+sudo pacman -S --needed dkms dbus ufw timeshift
 ```
 
 # General Utilities and Tools
